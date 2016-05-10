@@ -14,6 +14,8 @@ for el in listhead:
   if el.a != None:
       lst.append(el.a.get_text().strip())
 
+lst.insert(1,"Property Address")   #skips for some reason
+
 f.writerow(lst)    # Write column headers as the first line
 
 listings = soup.find_all(lambda tag: tag.name == 'tr' and (tag.get('class') == ['FormTableRow']) or tag.get('class') == ['FormTableRowAlt'])
