@@ -1,4 +1,4 @@
-
+import time
 import csv
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -6,7 +6,8 @@ r = urlopen('https://www.hudhomestore.com/Listing/BidResults.aspx?pageId=1&caseN
             '&street=&sPageSize=300&OrderbyName=DNETBIDAMOUNT&OrderbyValue=DESC&sLanguage=ENGLISH').read()
 soup = BeautifulSoup(r,"lxml")
 
-f = csv.writer(open("hud_sold.csv", "w"))
+date_str = time.strftime("_%d_%m_%Y")
+f = csv.writer(open("hud_sold" + date_str + ".csv", "w"))
 
 listhead = soup.find_all(lambda tag: tag.name == 'td' and tag.get('class') == ['FormTableSubheader'])
 lst = []
